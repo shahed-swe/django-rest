@@ -16,12 +16,12 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-# from django.urls import path #we are hiding it cause we will use another type of url
-from django.conf.urls import include,url
+from django.urls import path #we are hiding it cause we will use another type of url
+from django.conf.urls import include
 
 urlpatterns = [
-    url('^admin/$', admin.site.urls),
-    url('', include('book.urls')),
+    path('admin/', admin.site.urls),
+    path('', include('book.urls')),
 ]
 
 if settings.DEBUG:
