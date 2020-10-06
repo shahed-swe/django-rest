@@ -7,7 +7,6 @@ class BookNumber(models.Model):
     isbn_13 = models.CharField(max_length=13, blank=True,null=True)
 
 
-
 class BookSelf(models.Model):
     title = models.CharField(max_length=120, blank=True, null=True, default='')
     description = models.TextField(max_length=500, blank=True, null=True, default='')
@@ -24,4 +23,14 @@ class BookSelf(models.Model):
     def __str__(self):
         return self.title + ' | ' + str(self.pk)
 
+class Character(models.Model):
+    name = models.CharField(max_length=30)
+    book = models.ForeignKey(BookSelf, on_delete=models.CASCADE, related_name='characters')
 
+
+class Author(models.Model):
+    name = models.CharField(max_length=30)
+    surname = models.CharField(max_length=30)
+    books = models.ManyToManyField(BookSelf, related_name='author')
+
+    
